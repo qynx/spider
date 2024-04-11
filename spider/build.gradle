@@ -1,0 +1,76 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+plugins {
+    id 'org.springframework.boot' version '2.5.15'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.jetbrains.kotlin.jvm' version '1.7.22'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.7.22'
+    id 'org.jetbrains.kotlin.plugin.lombok' version '1.9.23'
+    id 'io.freefair.lombok' version '8.1.0'
+}
+
+ext {
+    lombokVersion = '1.18.22'
+    mapstructVersion = '1.5.3.Final'
+    vertxVersion = '4.3.7'
+    hutoolVersion = '5.8.20'
+}
+
+group = 'xyz.zix'
+version = '0.0.1'
+sourceCompatibility = '8'
+
+
+repositories {
+    maven {
+        url "https://maven.aliyun.com/repository/public"
+    }
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
+    implementation 'io.projectreactor.kotlin:reactor-kotlin-extensions'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-reactor'
+
+    // 存储
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+
+    // 工具类
+    implementation "org.projectlombok:lombok:$lombokVersion", "org.mapstruct:mapstruct:$mapstructVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion", "org.mapstruct:mapstruct-processor:$mapstructVersion"
+    implementation "cn.hutool:hutool-core:$hutoolVersion"
+    implementation "cn.hutool:hutool-http:$hutoolVersion"
+    implementation "cn.hutool:hutool-log:$hutoolVersion"
+    implementation "cn.hutool:hutool-crypto:$hutoolVersion"
+
+    //
+    implementation("io.netty:netty-resolver-dns-native-macos:4.1.108.Final")
+    implementation("io.netty:netty-all:4.1.92.Final")
+
+    // 数据库
+    implementation "com.alibaba:druid:1.2.18"
+    implementation "com.baomidou:mybatis-plus-boot-starter:3.5.3.1"
+    implementation("mysql:mysql-connector-java:8.0.33")
+
+    // 爬虫相关包
+    implementation("org.jsoup:jsoup:1.16.1")
+    implementation("cn.wanghaomiao:JsoupXpath:2.5.3")
+}
+
+tasks.withType(KotlinCompile) {
+    kotlinOptions {
+        freeCompilerArgs = ['-Xjsr305=strict']
+        jvmTarget = '1.8'
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
