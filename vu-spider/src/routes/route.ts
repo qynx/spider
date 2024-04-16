@@ -4,9 +4,9 @@ import Zix from "../page/Zix.vue";
 import CrawlJobSave from "../components/crawl_job/CrawlJobSave.vue";
 import CrawlJobPage from "../components/crawl_job/CrawlJobPage.vue";
 import CrawlJobSummary from "../components/crawl_job/CrawlJobSummary.vue";
-import BookPage from "../components/book/BookPage.vue";
 import PoetryAddPage from "../components/poetry/PoetryAddPage.vue";
 import PoetryListPage from "../components/poetry/PoetryListPage.vue";
+import BookPage from "../components/book/BookPage.vue";
 
 
 const routes: RouteRecordRaw[] = [

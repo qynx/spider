@@ -15,6 +15,8 @@ public class PoetryVO implements Serializable {
 
     public String author;
 
+    private String period;
+
     public PoetryTypeEnum type;
 
     public String content;

@@ -23,7 +23,7 @@ init()
 <style>
 .content {
   font-family: v-sans, system-ui, -apple-system, "system-ui", '宋体',serif;
-  background-color: rgb(235, 234, 234);
+  background-color: rgb(233, 230, 210);
   font-size: 22px;
   padding: 5px 5px;
   width: 80%;

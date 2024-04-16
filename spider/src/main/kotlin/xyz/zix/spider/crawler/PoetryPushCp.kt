@@ -2,19 +2,16 @@ package xyz.zix.spider.crawler
 
 import cn.hutool.log.Log
 import cn.hutool.log.LogFactory
-import kotlinx.coroutines.runBlocking
 import org.springframework.data.redis.core.StringRedisTemplate
 import org.springframework.stereotype.Component
 import xyz.zix.spider.handler.PoetryPushHandler
-import xyz.zix.spider.query.MsgPushService
 import xyz.zix.spider.repo.enums.JobSourceEnum
 import xyz.zix.spider.repo.service.sql.PoetrySqlService
-import xyz.zix.spider.repo.vo.wx.push.MsgType
 import java.util.concurrent.TimeUnit
 import javax.annotation.Resource
 
 @Component
-class PoetryPushCp : BaseCrawlHandler() {
+class PoetryPushCp : BaseJobHandler() {
 
     @Resource
     lateinit var poetrySqlService: PoetrySqlService
@@ -22,8 +19,7 @@ class PoetryPushCp : BaseCrawlHandler() {
     @Resource
     lateinit var stringRedisTemplate: StringRedisTemplate
 
-    @Resource
-    lateinit var msgPushService: MsgPushService
+
     @Resource
     lateinit var poetryPushHandler: PoetryPushHandler
 

@@ -27,6 +27,14 @@ public class ScheduleEn implements Serializable {
 
     private String ext;
 
+    private Date startTime;
+
+    private Date endTime;
+
+    private Long totalCount;
+
+    private Long finishCount;
+
     private Date createdAt;
 
     private Date updatedAt;

@@ -20,6 +20,7 @@ import xyz.zix.spider.repo.enums.ScheduleStatusEnum;
 import xyz.zix.spider.repo.query.CrawlJobQuery;
 import xyz.zix.spider.repo.query.CrawlScheduleQuery;
 import xyz.zix.spider.repo.service.sql.CrawlJobSqlService;
+import xyz.zix.spider.repo.service.sql.ReqLogSqlService;
 import xyz.zix.spider.repo.service.sql.ScheduleSqlService;
 import xyz.zix.spider.repo.vo.ZixRsp;
 import xyz.zix.spider.utils.ZixCronUtils;
@@ -34,6 +35,8 @@ public class CrawlJobController extends BaseControlService<CrawlJobEn, CrawlJobQ
 
     @Resource
     private ScheduleSqlService scheduleSqlService;
+    @Resource
+    private ReqLogSqlService reqLogSqlService;
 
     protected void prepareSave(CrawlJobVO last, CrawlJobVO curr) {
         if (StringUtils.isNotBlank(curr.getCron())) {
@@ -100,6 +103,7 @@ public class CrawlJobController extends BaseControlService<CrawlJobEn, CrawlJobQ
         summaryVO.setTotalScheduleCount(scheduleSqlService.count(scheduleQuery));
         scheduleQuery.setStatus(ScheduleStatusEnum.RUNNING);
         summaryVO.setRunningScheduleCount(scheduleSqlService.count(scheduleQuery));
+        summaryVO.setDownloadCnt(0L);
         return ZixRsp.success(summaryVO);
     }
 
@@ -113,7 +117,7 @@ public class CrawlJobController extends BaseControlService<CrawlJobEn, CrawlJobQ
     @PostMapping("/page")
     @ResponseBody
     public Object page(@RequestBody CrawlJobQuery query) {
-        return ZixRsp.success(page(query, query.getCurrent(), query.getPageSize()));
+        return ZixRsp.success(page(query, query.getCurrent(), query.getPageSize(), " order by id desc "));
     }
 
 

@@ -31,6 +31,7 @@ export interface CrawlJobQuery {
 export interface CrawlJobSummaryVo {
     totalScheduleCount?: number
     runningScheduleCount?: number
+    downloadCnt?: number
 }
 
 export interface ScheduleVO {

@@ -1,11 +1,9 @@
 <script lang="ts" setup>
 
 import {useRouter} from "vue-router";
-import CrawlJobSummary from "./CrawlJobSummary.vue";
 import {ref} from "vue";
 import {summaryCrawlJobApi, pageScheduleApi} from "../../api/CrawlJobApi";
 import {CrawlJobSummaryVo, ScheduleQuery, ScheduleVO} from "../../api/BaseVoDef";
-import CrawlJobNameRender from "./CrawlJobNameRender.vue";
 import ScheduleStatusRender from "../tags/ScheduleStatusRender.vue";
 
 const router = useRouter()
@@ -44,6 +42,12 @@ const cols = [
     "dataIndex": "scheduleTimeStr",
     "title": "time"
   }
+  ,
+  {
+    "key": "consumeTimeStr",
+    "dataIndex": "consumeTimeStr",
+    "title": "consumeTime"
+  }
 ]
 
 const init = async function () {
@@ -73,6 +77,8 @@ init()
       <a-card :title="'调度明细'">
         <h3>{{ '总调度次数🔥 ' + summary.totalScheduleCount }}</h3>
         <h3>运行中🔥 {{ summary.runningScheduleCount }}</h3>
+        <h3>下载数🔥 {{ summary.downloadCnt }}</h3>
+
       </a-card>
     </a-layout>
 

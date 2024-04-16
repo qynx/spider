@@ -27,14 +27,7 @@ const columns = ref([
   {
     title: "内容",
     dataIndex: "content",
-    key: "content",
-    customRender: ({text, record, idx, col}) => {
-      return h(NEllipsis, {
-        style: {
-          "max-width": "180px",
-        }
-      }, text)
-    }
+    key: "content"
   },
   {
     title: "操作",
@@ -115,7 +108,17 @@ init()
     <a-divider></a-divider>
     <a-table :pagination="page" :columns="columns" :data-source="data">
       <template #bodyCell="{ column, record }">
-        <template v-if="column.key == 'action'">
+        <template v-if="column.key == 'content'">
+          <n-ellipsis :style="{maxWidth: '180px'}">
+            {{ record.content }}
+            <template #tooltip>
+              <span style="text-align: center; white-space: pre-wrap">
+                {{record.content}}
+              </span>
+            </template>
+          </n-ellipsis>
+        </template>
+        <template v-else-if="column.key == 'action'">
           <a-button @click="() => push(record.id)" type="link">推送</a-button>
           <a-button @click="() => edit(record.id)" type="link">编辑</a-button>
           <n-button quaternary type="error" @click="() => del(record.id)">删除</n-button>

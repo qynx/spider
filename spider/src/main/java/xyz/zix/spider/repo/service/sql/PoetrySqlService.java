@@ -13,7 +13,9 @@ public class PoetrySqlService extends BaseSqlService<PoetryEnMapper, PoetryEn, P
     @Override
     LambdaQueryWrapper<PoetryEn> toWrapper(PoetryQuery query) {
         return new LambdaQueryWrapper<PoetryEn>()
+                .eq(StringUtils.isNotEmpty(query.getAuthor()), PoetryEn::getAuthor, query.getAuthor())
                 .eq(StringUtils.isNotEmpty(query.getTitle()), PoetryEn::getTitle, query.getTitle())
+                .like(StringUtils.isNotEmpty(query.getTitleLike()), PoetryEn::getTitle, query.getTitleLike())
                 ;
     }
 }

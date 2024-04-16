@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.commons.lang3.StringUtils;
 import xyz.zix.spider.repo.vo.PageVO;
 
 import java.util.List;
@@ -23,7 +24,14 @@ public abstract class BaseSqlService<M extends BaseMapper<T>, T, Q> extends Serv
     }
 
     public PageVO<T> page(Q q, Long current, Long pageSize) {
+        return page(q, current, pageSize, null);
+    }
+
+    public PageVO<T> page(Q q, Long current, Long pageSize, String last) {
         LambdaQueryWrapper<T> wrapper = toWrapper(q);
+        if (StringUtils.isNotEmpty(last)) {
+            wrapper.last(last);
+        }
         Page<T> r = new Page<T>(current, pageSize);
         page(r, wrapper);
         PageVO<T> res =  new PageVO<T>();

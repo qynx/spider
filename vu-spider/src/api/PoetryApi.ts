@@ -1,4 +1,6 @@
 import {cli} from "./BaseCli";
+import {PoetryQuery, PoetryVO} from "./PoetryVoDef";
+import {PageVO} from "./BaseVoDef";
 
 export const listPoetryApi = async function (q: PoetryQuery): Promise<PageVO<PoetryVO>> {
     const url = "/api/zix/poetry/page"
@@ -22,5 +24,5 @@ export const getPoetryApi = async function (id: string): Promise<PoetryVO> {
 
 export const delPoetryApi = async function (id: string) : Promise<any> {
     const url = "/api/zix/poetry/del"
-    return (await cli.post(url, {params: {"id": id}})).data.data
+    return (await cli.post(url, {}, {params: {"id": id}})).data.data
 }

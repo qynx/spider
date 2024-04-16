@@ -24,7 +24,7 @@ public class CrawlJobScheduleController extends BaseControlService<ScheduleEn, C
     @PostMapping("/page")
     @ResponseBody
     public Object page(@RequestBody CrawlScheduleQuery query) {
-        return ZixRsp.success(page(query, query.getCurrent(), query.getPageSize()));
+        return ZixRsp.success(page(query, query.getCurrent(), query.getPageSize(), " order by id desc "));
     }
 
     @PostMapping("/suspend")

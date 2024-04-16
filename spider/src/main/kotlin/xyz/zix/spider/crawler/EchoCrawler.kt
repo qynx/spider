@@ -6,18 +6,13 @@ import cn.hutool.log.LogFactory
 import org.springframework.stereotype.Component
 import xyz.zix.spider.repo.enums.JobSourceEnum
 import xyz.zix.spider.repo.service.sql.CrawlJobSqlService
-import xyz.zix.spider.repo.service.sql.ScheduleSqlService
 import javax.annotation.Resource
 
 @Component
-class EchoCrawler : BaseCrawlHandler() {
+class EchoCrawler : BaseJobHandler() {
 
     val log: Log = LogFactory.get()
 
-    @Resource
-    private lateinit var scheduleSqlService: ScheduleSqlService
-    @Resource
-    private lateinit var crawlJobSqlService: CrawlJobSqlService
 
     override fun crawlSource(): JobSourceEnum {
         return JobSourceEnum.ECHO

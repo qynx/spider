@@ -20,6 +20,10 @@ public abstract class BaseControlService<D, Q, V, S extends BaseSqlService<? ext
     @Autowired
     protected S service;
 
+    public PageVO<V> page(Q q, Long current, Long pageSize, String last) {
+        PageVO<D> page = service.page(q, current, pageSize, last);
+        return page.adapt(adapter::toV);
+    }
 
     public PageVO<V> page(Q q, Long current, Long pageSize) {
         PageVO<D> page = service.page(q, current, pageSize);

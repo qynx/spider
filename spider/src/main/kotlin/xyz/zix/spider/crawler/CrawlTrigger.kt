@@ -1,5 +1,7 @@
 package xyz.zix.spider.crawler
 
+import cn.hutool.log.Log
+import cn.hutool.log.LogFactory
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.springframework.context.ApplicationContext
@@ -10,6 +12,7 @@ import xyz.zix.spider.repo.enums.ScheduleStatusEnum
 import xyz.zix.spider.repo.service.sql.CrawlJobSqlService
 import xyz.zix.spider.repo.service.sql.ScheduleSqlService
 import java.lang.Exception
+import java.util.*
 import javax.annotation.Resource
 import kotlin.collections.HashMap
 
@@ -18,12 +21,15 @@ class CrawlTrigger(
     private final val applicationContext: ApplicationContext
 ) {
 
-    val beanMap: HashMap<JobSourceEnum, BaseCrawlHandler> = HashMap()
+    val beanMap: HashMap<JobSourceEnum, BaseJobHandler> = HashMap()
+    val log:Log = LogFactory.get()
 
     init {
-        applicationContext.getBeansOfType(BaseCrawlHandler::class.java)
+        applicationContext.getBeansOfType(BaseJobHandler::class.java)
             .values
-            .forEach { beanMap[it.crawlSource()] = it }
+            .forEach {
+                log.info("${it.crawlSource()} load bean")
+                beanMap[it.crawlSource()] = it }
     }
 
     @Resource
@@ -32,10 +38,12 @@ class CrawlTrigger(
     @Resource
     lateinit var crawlJobSqlService: CrawlJobSqlService
 
+
     suspend fun trigger(schedule: ScheduleEn) {
         val statusUpdates = ScheduleEn()
         statusUpdates.id = schedule.id
         statusUpdates.status = ScheduleStatusEnum.RUNNING
+        statusUpdates.startTime = Date()
         scheduleSqlService.updateById(statusUpdates)
 
         val job = crawlJobSqlService.getById(schedule.jobId)
@@ -45,9 +53,11 @@ class CrawlTrigger(
             try {
                 bean!!.start(job.startUrl, scheduleId)
                 statusUpdates.status = ScheduleStatusEnum.SUCCESS
+                statusUpdates.endTime = Date()
                 scheduleSqlService.updateById(statusUpdates)
             } catch (e: Exception) {
-                e.printStackTrace()
+                log.error("", e)
+                statusUpdates.endTime = Date()
                 statusUpdates.status=  ScheduleStatusEnum.FAIL
                 scheduleSqlService.updateById(statusUpdates)
             }

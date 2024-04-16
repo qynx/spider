@@ -13,4 +13,6 @@ public class CrawlJobSummaryVO implements Serializable {
 
     private Long runningScheduleCount;
 
+    private Long downloadCnt;
+
 }

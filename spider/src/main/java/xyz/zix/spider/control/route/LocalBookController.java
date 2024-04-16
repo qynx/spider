@@ -18,7 +18,7 @@ public class LocalBookController {
     @RequestMapping("/render")
     public Object render() {
         String filePath =
-        Paths.get(PathConsts.DOWNLOAD_PATH, "long.txt").toString();
+        Paths.get(PathConsts.DOWNLOAD_PATH, "sheng.txt").toString();
         String content = FileUtil.readString(filePath, Charset.defaultCharset());
         content = content.replace("\n", "<br>");
         return new ResponseEntity<String>(content, HttpStatus.OK);
