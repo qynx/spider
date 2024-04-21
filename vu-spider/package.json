@@ -11,8 +11,11 @@
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
     "ant-design-vue": "4.x",
+    "echarts": "^5.5.0",
+    "i": "^0.3.7",
     "naive-ui": "^2.38.1",
     "vue": "^3.4.21",
+    "vue-echarts": "^6.6.9",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {

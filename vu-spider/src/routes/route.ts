@@ -7,6 +7,7 @@ import CrawlJobSummary from "../components/crawl_job/CrawlJobSummary.vue";
 import PoetryAddPage from "../components/poetry/PoetryAddPage.vue";
 import PoetryListPage from "../components/poetry/PoetryListPage.vue";
 import BookPage from "../components/book/BookPage.vue";
+import ReqLogGraph from "../components/req_log/ReqLogGraph.vue";
 
 
 const routes: RouteRecordRaw[] = [
@@ -43,6 +44,11 @@ const routes: RouteRecordRaw[] = [
                 path: "book",
                 name: "BookPage",
                 component: BookPage
+            },
+            {
+                path: 'req_log_graph',
+                name: "ReqLogGraphPage",
+                component: ReqLogGraph
             }
         ]
     }

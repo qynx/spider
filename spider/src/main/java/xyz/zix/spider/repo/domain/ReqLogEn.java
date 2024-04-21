@@ -38,6 +38,8 @@ public class ReqLogEn implements Serializable {
 
     private Date reqTime;
 
+    private String reqTimeMin;
+
     private Long consumeTime;
 
     private Long scheduleId;

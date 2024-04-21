@@ -20,7 +20,6 @@ import xyz.zix.spider.repo.enums.ScheduleStatusEnum;
 import xyz.zix.spider.repo.query.CrawlJobQuery;
 import xyz.zix.spider.repo.query.CrawlScheduleQuery;
 import xyz.zix.spider.repo.service.sql.CrawlJobSqlService;
-import xyz.zix.spider.repo.service.sql.ReqLogSqlService;
 import xyz.zix.spider.repo.service.sql.ScheduleSqlService;
 import xyz.zix.spider.repo.vo.ZixRsp;
 import xyz.zix.spider.utils.ZixCronUtils;
@@ -35,8 +34,7 @@ public class CrawlJobController extends BaseControlService<CrawlJobEn, CrawlJobQ
 
     @Resource
     private ScheduleSqlService scheduleSqlService;
-    @Resource
-    private ReqLogSqlService reqLogSqlService;
+
 
     protected void prepareSave(CrawlJobVO last, CrawlJobVO curr) {
         if (StringUtils.isNotBlank(curr.getCron())) {

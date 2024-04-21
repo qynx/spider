@@ -45,3 +45,18 @@ export interface ScheduleQuery {
     current?: number,
     pageSize?: number
 }
+
+export interface GraphBarVO {
+    type?: string,
+    vy?: Array<string>,
+    hx?: Array<string>,
+}
+
+export interface GraphQuery {
+
+}
+
+export interface GraphRsp {
+
+    bar?: GraphBarVO;
+}

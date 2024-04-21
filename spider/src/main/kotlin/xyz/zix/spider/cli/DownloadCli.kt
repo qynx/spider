@@ -1,5 +1,7 @@
 package xyz.zix.spider.cli
 
+import cn.hutool.core.date.DateUnit
+import cn.hutool.core.date.DateUtil
 import cn.hutool.crypto.digest.DigestUtil
 import cn.hutool.crypto.digest.MD5
 import org.springframework.data.redis.core.StringRedisTemplate
@@ -92,6 +94,7 @@ class DownloadCli {
         reqLog.rspBody = req.rspBody
         reqLog.scheduleId = scheduleId
         reqLog.rspHeader = JsonUtils.toJson(req.rspHeader)
+        reqLog.reqTimeMin = DateUtil.format(reqLog.reqTime, "yyyy-MM-dd HH:mm")
         if (Objects.nonNull(req.rspHeader)) {
             val rspContentType = req.rspHeader.getFirst("Content-Type")
             val type = ContentTypeEnum.derive(rspContentType)
