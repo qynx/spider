@@ -30,7 +30,7 @@ class CrawlJobRunTask {
         val query = CrawlJobQuery()
         query.status = CrawlJobStatusEnum.RUNNING
         query.nextTriggerTimeMax = System.currentTimeMillis() + 60000L
-        query.nextTriggerTimeMin = System.currentTimeMillis() - 3 * 86400000L
+        query.nextTriggerTimeMin = System.currentTimeMillis() - 30 * 86400000L
         val list = crawlJobSqlService.list(query)
 
         for (job in list) {

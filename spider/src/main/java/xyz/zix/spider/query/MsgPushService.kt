@@ -3,6 +3,7 @@ package xyz.zix.spider.query
 import org.springframework.stereotype.Component
 import xyz.zix.spider.cli.WcpCli
 import xyz.zix.spider.cli.WxPushCli
+import xyz.zix.spider.common.dto.WcpMsgRsp
 import xyz.zix.spider.common.dto.WxPushConfigDTO
 import xyz.zix.spider.common.utils.ConfigUtils
 import xyz.zix.spider.repo.vo.wx.push.MsgType
@@ -33,8 +34,8 @@ class MsgPushService {
         wxPushCli.push(msg)
     }
 
-    suspend fun sendWcpHookMsg(title:String, content:String, type:MsgType) {
-        wcpCli.sendHookMsg(title, content, type)
+    suspend fun sendWcpHookMsg(title:String, content:String, type:MsgType) :WcpMsgRsp {
+        return wcpCli.sendHookMsg(title, content, type)
     }
 
 }

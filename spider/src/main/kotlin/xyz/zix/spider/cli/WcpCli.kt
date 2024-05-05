@@ -5,6 +5,7 @@ import cn.hutool.log.LogFactory
 import org.springframework.http.HttpMethod
 import org.springframework.stereotype.Component
 import xyz.zix.spider.common.dto.WcpMsgDTO
+import xyz.zix.spider.common.dto.WcpMsgRsp
 import xyz.zix.spider.common.dto.WcpMsgTextVO
 import xyz.zix.spider.common.dto.WxCoprConfigDTO
 import xyz.zix.spider.common.utils.ConfigUtils
@@ -24,7 +25,7 @@ class WcpCli {
     @Resource
     lateinit var restCli: RestCli
 
-    suspend fun sendHookMsg(title: String, content: String, type: MsgType) {
+    suspend fun sendHookMsg(title: String, content: String, type: MsgType): WcpMsgRsp {
         val msg = WcpMsgDTO()
         msg.msgtype = type.wcpValue
         when {
@@ -36,10 +37,10 @@ class WcpCli {
 
             else -> throw RuntimeException("not support type " + type)
         }
-        sendHookMsg(msg)
+        return sendHookMsg(msg)
     }
 
-    suspend fun sendHookMsg(msg: WcpMsgDTO) {
+    suspend fun sendHookMsg(msg: WcpMsgDTO): WcpMsgRsp {
         val req = RestReq()
         req.method = HttpMethod.POST
         req.url = config.wxCorpHookUrl + "&debug=1"
@@ -47,5 +48,6 @@ class WcpCli {
         req.headers.add("Content-Type", "application/json")
         restCli.req(req)
         log.info("sendHookMsg ${req.body} finish ${req.rspStatusCode} ${req.rspBody}")
+        return JsonUtils.fromJson(req.rspBody, WcpMsgRsp::class.java)
     }
 }

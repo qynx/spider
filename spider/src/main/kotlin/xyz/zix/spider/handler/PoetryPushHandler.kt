@@ -12,16 +12,21 @@ class PoetryPushHandler {
 
     @Resource
     lateinit var msgPushService: MsgPushService
+
     @Resource
     lateinit var poetrySqlService: PoetrySqlService
 
-    suspend fun push(id:Long) {
+    suspend fun push(id: Long) {
         val item = poetrySqlService.getById(id)
         push(item)
     }
 
-    suspend fun push(item:PoetryEn) {
+    suspend fun push(item: PoetryEn) {
         val title = "${item.title} [${item.author}]"
-        msgPushService.sendWcpHookMsg(title, item.content, MsgType.TEXT)
+        val rsp = msgPushService.sendWcpHookMsg(title, item.content, MsgType.TEXT)
+        if (!rsp.success()) {
+            throw RuntimeException(rsp.errMsg)
+        }
     }
+
 }
