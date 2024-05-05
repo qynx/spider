@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.thymeleaf.util.StringUtils;
 import xyz.zix.spider.control.service.BaseControlService;
+import xyz.zix.spider.control.vo.PoetrySourceVO;
 import xyz.zix.spider.control.vo.PoetryVO;
+import xyz.zix.spider.crawler.GuShiWenCrawler;
 import xyz.zix.spider.exceptions.CommonException;
 import xyz.zix.spider.repo.domain.PoetryEn;
 import xyz.zix.spider.repo.enums.PoetryTypeEnum;
@@ -19,12 +21,18 @@ import xyz.zix.spider.repo.query.PoetryQuery;
 import xyz.zix.spider.repo.service.sql.PoetrySqlService;
 import xyz.zix.spider.repo.vo.ZixRsp;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.List;
 
 
 @RestController
 @RequestMapping("/api/zix/poetry")
 public class PoetryController  extends BaseControlService<PoetryEn, PoetryQuery, PoetryVO, PoetrySqlService> {
+
+    @Resource
+    private GuShiWenCrawler guShiWenCrawler;
+
 
     protected void prepareSave(PoetryVO last, PoetryVO curr) {
         if (org.apache.commons.lang3.StringUtils.isNotEmpty(curr.getTitle())) {
@@ -76,7 +84,5 @@ public class PoetryController  extends BaseControlService<PoetryEn, PoetryQuery,
     public Object del2(@RequestParam("id") Long id) {
         return ZixRsp.success(del(id));
     }
-
-
 
 }

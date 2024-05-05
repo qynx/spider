@@ -12,6 +12,7 @@ public enum JobSourceEnum {
     TE_SE_NOVEL(1),
     POETRY_PUSH(2),
     SHU_69(3),
+    GU_SHI_WEN(4),
     ;
 
 

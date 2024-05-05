@@ -2,18 +2,24 @@
 
 import {ref} from "vue";
 import {PoetryVO} from "../../api/PoetryVoDef";
-import {getPoetryApi, poetryAddApi, delPoetryApi} from "../../api/PoetryApi";
+import {getPoetryApi, poetryAddApi, savePoetryBySourceApi} from "../../api/PoetryApi";
 import {useRouter} from "vue-router";
 
 const form = ref<PoetryVO>({})
+const link = ref("")
 const route = useRouter()
 const add = async function () {
   await poetryAddApi(form.value)
-  if(form.value.id) {
+  if (form.value.id) {
     window.msg.success("update success !")
   } else {
     window.msg.success("add success !")
   }
+}
+
+const add2 = async function () {
+  await savePoetryBySourceApi(link.value)
+  window.msg.success("链接录入成功")
 }
 
 const init = async function () {
@@ -35,6 +41,7 @@ init()
 
     <div :style="{background: 'white', width: '50%', padding: '4px'}">
       <a-space direction="vertical" :style="{width: '300px'}">
+        <a-input placeholder="link" v-model:value="link"></a-input>
         <a-input placeholder="标题" v-model:value="form.title"></a-input>
         <a-input placeholder="作者" v-model:value="form.author"></a-input>
         <a-textarea
@@ -43,6 +50,7 @@ init()
             auto-size
         ></a-textarea>
         <a-button type="primary" @click="add">提交</a-button>
+        <a-button type="primary" @click="add2">链接录入</a-button>
       </a-space>
     </div>
 
