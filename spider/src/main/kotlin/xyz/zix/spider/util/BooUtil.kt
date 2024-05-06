@@ -17,6 +17,3 @@ fun saveBook(title:String, chapterList:List<ChapterVO>) {
     val storePath = Paths.get(PathConsts.DOWNLOAD_PATH, "$title.txt").toString()
     FileUtil.writeString(str.toString(), File(storePath), Charset.defaultCharset())
 }
-
-class BooUtil {
-}

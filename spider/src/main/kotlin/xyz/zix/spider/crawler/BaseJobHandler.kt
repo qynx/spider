@@ -36,7 +36,7 @@ abstract class BaseJobHandler {
         val job = crawlJobSqlService.getById(sch.jobId)
         if (sch.type == ScheduleTypeEnum.MANUAL) {
             msgPushService.sendWcpHookMsg(
-                "${job.name} 执行完成","${job.name} 执行完成 调度时间 ${DateUtil.format(sch.scheduleTime, "yy/MM/dd HH:mmm")}",
+                "${job.name} 执行完成","${job.name} 执行完成 调度时间 ${DateUtil.format(sch.scheduleTime, "yy/MM/dd HH:mm")}",
                 MsgType.TEXT
             )
         }

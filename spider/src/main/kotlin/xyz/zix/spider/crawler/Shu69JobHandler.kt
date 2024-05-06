@@ -15,6 +15,7 @@ import java.util.regex.Pattern
 class Shu69JobHandler : BaseJobHandler() {
 
     val log:Log = LogFactory.get()
+    // https://www.69shu.pro
 
 
     override fun crawlSource(): JobSourceEnum {

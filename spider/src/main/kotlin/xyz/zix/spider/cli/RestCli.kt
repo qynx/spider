@@ -1,7 +1,10 @@
 package xyz.zix.spider.cli
 
+import cn.hutool.core.codec.Base64
+import cn.hutool.core.io.IoUtil
 import cn.hutool.log.Log
 import cn.hutool.log.LogFactory
+import org.springframework.core.io.ByteArrayResource
 import org.springframework.http.HttpMethod
 import org.springframework.web.client.HttpStatusCodeException
 import org.springframework.web.reactive.function.client.WebClient
@@ -9,11 +12,13 @@ import org.springframework.web.reactive.function.client.awaitBodyOrNull
 import org.springframework.web.reactive.function.client.awaitExchange
 import org.springframework.web.util.UriComponentsBuilder
 import xyz.zix.spider.repo.service.rest.RestReq
+import java.io.ByteArrayOutputStream
+import java.nio.charset.Charset
 
 class RestCli constructor(
     private val webClient: WebClient
 ) {
-    val log:Log = LogFactory.get()
+    val log: Log = LogFactory.get()
 
     suspend fun get(url: String): RestReq {
         val req = RestReq()
@@ -49,8 +54,10 @@ class RestCli constructor(
         try {
 
             webReq.awaitExchange {
-                val rspBody = it.awaitBodyOrNull<String>()
-                req.rspBody = rspBody
+                val rspArray = it.awaitBodyOrNull<ByteArrayResource>()
+                log.info("rsp array len ${rspArray!!.byteArray.size}")
+                req.rspBody = String(rspArray!!.byteArray, Charset.defaultCharset())
+                req.rspByte = Base64.encode(rspArray!!.byteArray)
                 req.rspHeader = it.headers().asHttpHeaders()
                 req.rspStatusCode = it.rawStatusCode()
 

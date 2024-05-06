@@ -23,6 +23,7 @@ public class RestReq implements Serializable {
     private Long rspLogId;
     private HttpHeaders rspHeader;
     private String rspBody;
+    private String rspByte;
     private Integer rspStatusCode;
     private Exception rspEx;
 

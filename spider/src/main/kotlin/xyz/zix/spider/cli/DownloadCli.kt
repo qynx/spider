@@ -91,7 +91,7 @@ class DownloadCli {
         reqLog.consumeTime = (end - start)
         reqLog.reqTime = Date(start)
         reqLog.rspStatus = req.rspStatusCode ?: -1
-        reqLog.rspBody = req.rspBody
+        reqLog.rspBody = req.rspByte
         reqLog.scheduleId = scheduleId
         reqLog.rspHeader = JsonUtils.toJson(req.rspHeader)
         reqLog.reqTimeMin = DateUtil.format(reqLog.reqTime, "yyyy-MM-dd HH:mm")

@@ -5,8 +5,7 @@ import cn.hutool.log.Log
 import cn.hutool.log.LogFactory
 import org.springframework.stereotype.Component
 import xyz.zix.spider.repo.enums.JobSourceEnum
-import xyz.zix.spider.repo.service.sql.CrawlJobSqlService
-import javax.annotation.Resource
+
 
 @Component
 class EchoCrawler : BaseJobHandler() {
