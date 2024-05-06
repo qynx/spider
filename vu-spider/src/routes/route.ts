@@ -8,49 +8,56 @@ import PoetryAddPage from "../components/poetry/PoetryAddPage.vue";
 import PoetryListPage from "../components/poetry/PoetryListPage.vue";
 import BookPage from "../components/book/BookPage.vue";
 import ReqLogGraph from "../components/req_log/ReqLogGraph.vue";
+import MenuPage from '../page/MenuPage.vue';
 
+const allChildren = [
+    {
+        path: "poetry_save",
+        name: "poetrySave",
+        component: PoetryAddPage
+    },
+    {
+        path: "poetry_page",
+        name: "poetryPage",
+        component: PoetryListPage
+    },
+    {
+        path: "crawl_job_save",
+        name: "CrawlJobSave",
+        component: CrawlJobSave
+    },
+    {
+        path: "crawl_job_page",
+        name: "CrawlJobPage",
+        component: CrawlJobPage
+    },
+    {
+        path: "crawl_job_summary",
+        name: "CrawlSummaryPage",
+        component: CrawlJobSummary
+    },
+    {
+        path: "book",
+        name: "BookPage",
+        component: BookPage
+    },
+    {
+        path: 'req_log_graph',
+        name: "ReqLogGraphPage",
+        component: ReqLogGraph
+    }
+]
 
 const routes: RouteRecordRaw[] = [
     {
         path: "/zix",
         component: Zix,
-        children: [
-            {
-                path: "poetry_save",
-                name: "poetrySave",
-                component: PoetryAddPage
-            },
-            {
-                path: "poetry_page",
-                name: "poetryPage",
-                component: PoetryListPage
-            },
-            {
-                path: "crawl_job_save",
-                name: "CrawlJobSave",
-                component: CrawlJobSave
-            },
-            {
-                path: "crawl_job_page",
-                name: "CrawlJobPage",
-                component: CrawlJobPage
-            },
-            {
-                path: "crawl_job_summary",
-                name: "CrawlSummaryPage",
-                component: CrawlJobSummary
-            },
-            {
-                path: "book",
-                name: "BookPage",
-                component: BookPage
-            },
-            {
-                path: 'req_log_graph',
-                name: "ReqLogGraphPage",
-                component: ReqLogGraph
-            }
-        ]
+        children: allChildren,
+    },
+    {
+        path: "/spider",
+        component: MenuPage,
+        children: allChildren,
     }
 ]
 

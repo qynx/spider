@@ -6,6 +6,10 @@ import naive from 'naive-ui'
 import 'ant-design-vue/dist/reset.css';
 import "echarts"
 import ECharts from 'vue-echarts'
+// 通用字体
+import 'vfonts/Lato.css'
+// 等宽字体
+import 'vfonts/FiraCode.css'
 
 import Antd from 'ant-design-vue';
 
