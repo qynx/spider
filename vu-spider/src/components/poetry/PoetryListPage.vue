@@ -30,6 +30,11 @@ const columns = ref([
     key: "content"
   },
   {
+    title: "录入",
+    dataIndex: "createdAtStr",
+    key: "createdAt"
+  },
+  {
     title: "操作",
     key: "action"
   }

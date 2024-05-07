@@ -44,6 +44,10 @@ const menuOptions: MenuOption[] = [
       {
         label: "保存",
         key: "poetrySave",
+      },
+      {
+        label: "分布",
+        key: "poetryGraph"
       }
     ]
   }

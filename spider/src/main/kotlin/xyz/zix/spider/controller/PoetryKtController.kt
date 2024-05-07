@@ -1,7 +1,6 @@
 package xyz.zix.spider.controller
 
 import org.springframework.web.bind.annotation.*
-import xyz.zix.spider.common.dto.PoetryDTO
 import xyz.zix.spider.control.route.PoetryController
 import xyz.zix.spider.control.vo.PoetrySourceVO
 import xyz.zix.spider.control.vo.PoetryVO

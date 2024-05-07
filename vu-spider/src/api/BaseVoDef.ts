@@ -48,15 +48,30 @@ export interface ScheduleQuery {
 
 export interface GraphBarVO {
     type?: string,
+    title?: string,
     vy?: Array<string>,
     hx?: Array<string>,
+    vyInt: Array<number>
 }
 
 export interface GraphQuery {
 
 }
 
+export interface GraphItemVO {
+    value?: any,
+    name?: string
+}
+
+export interface GraphSeriesVO {
+    name?: string,
+    data?: Array<any>
+    type?: string
+    radius?: string
+}
+
 export interface GraphRsp {
 
     bar?: GraphBarVO;
+    series?: Array<GraphSeriesVO>
 }

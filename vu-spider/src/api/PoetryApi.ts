@@ -1,5 +1,5 @@
 import {cli} from "./BaseCli";
-import {PoetryQuery, PoetryVO} from "./PoetryVoDef";
+import {PoetryGraphReq, PoetryQuery, PoetryVO} from "./PoetryVoDef";
 import {PageVO} from "./BaseVoDef";
 
 export const listPoetryApi = async function (q: PoetryQuery): Promise<PageVO<PoetryVO>> {
@@ -31,4 +31,9 @@ export const getPoetryApi = async function (id: string): Promise<PoetryVO> {
 export const delPoetryApi = async function (id: string) : Promise<any> {
     const url = "/api/zix/poetry/del"
     return (await cli.post(url, {}, {params: {"id": id}})).data.data
+}
+
+export const poetryGraphApi = async function (req: PoetryGraphReq) : Promise<any> {
+    const url = "/api/zix/poetry/graph"
+    return (await cli.post(url,req )).data.data
 }

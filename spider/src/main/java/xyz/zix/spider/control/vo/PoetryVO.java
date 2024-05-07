@@ -21,6 +21,8 @@ public class PoetryVO implements Serializable {
 
     public String content;
 
+    private String createdAtStr;
+
     public Date createdAt;
 
     public Date updatedAt;

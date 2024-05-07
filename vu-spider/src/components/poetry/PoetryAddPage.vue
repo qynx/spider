@@ -11,9 +11,9 @@ const route = useRouter()
 const add = async function () {
   await poetryAddApi(form.value)
   if (form.value.id) {
-    window.msg.success("update success !")
+    window.msg.success("😊更新成功 !")
   } else {
-    window.msg.success("add success !")
+    window.msg.success("😊新增成功 !")
   }
 }
 

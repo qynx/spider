@@ -4,6 +4,7 @@ export interface PoetryVO {
     title?: string,
     content?: string,
     author?: string
+    createdAtStr?: string
 }
 
 export interface PoetryQuery {
@@ -13,3 +14,8 @@ export interface PoetryQuery {
     current: number,
     pageSize: number,
 }
+
+export interface PoetryGraphReq {
+    groupBy?: string
+}
+

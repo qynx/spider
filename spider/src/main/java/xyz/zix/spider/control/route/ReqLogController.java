@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.zix.spider.control.service.BaseControlService;
-import xyz.zix.spider.control.vo.GraphBarVO;
+import xyz.zix.spider.control.vo.GraphCommonBarVO;
 import xyz.zix.spider.control.vo.GraphRsp;
 import xyz.zix.spider.control.vo.ReqLogVO;
 
@@ -62,7 +62,7 @@ public class ReqLogController extends BaseControlService<ReqLogEn, ReqLogQuery, 
         }
 
         GraphRsp rsp = new GraphRsp();
-        rsp.setBar(new GraphBarVO());
+        rsp.setBar(new GraphCommonBarVO());
         List<String> hxList = map.keySet().stream().sorted().collect(Collectors.toList());
         rsp.getBar().setHx(hxList.stream().map(i -> i.substring(11)).collect(Collectors.toList()));
         rsp.getBar().setVy(hxList.stream().map(i -> map.get(i)).map(i -> Double.valueOf(i)).collect(Collectors.toList()));

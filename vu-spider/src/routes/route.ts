@@ -9,6 +9,7 @@ import PoetryListPage from "../components/poetry/PoetryListPage.vue";
 import BookPage from "../components/book/BookPage.vue";
 import ReqLogGraph from "../components/req_log/ReqLogGraph.vue";
 import MenuPage from '../page/MenuPage.vue';
+import PoetryGraph from "../components/poetry/PoetryGraph.vue";
 
 const allChildren = [
     {
@@ -20,6 +21,11 @@ const allChildren = [
         path: "poetry_page",
         name: "poetryPage",
         component: PoetryListPage
+    },
+    {
+        path: "poetry_graph",
+        name: "poetryGraph",
+        component: PoetryGraph
     },
     {
         path: "crawl_job_save",
