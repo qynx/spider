@@ -48,6 +48,12 @@ const cols = [
     "dataIndex": "consumeTimeStr",
     "title": "consumeTime"
   }
+  ,
+  {
+    "key": "processRatio",
+    "dataIndex": "processRatio",
+    "title": "processRatio"
+  }
 ]
 
 const init = async function () {
@@ -91,6 +97,15 @@ init()
 
         <template v-if="column.key =='status'">
           <ScheduleStatusRender :job="record"></ScheduleStatusRender>
+        </template>
+
+        <template v-if="column.key =='processRatio'">
+          <n-progress
+              type="line"
+              :percentage="record.processRatio * 100"
+              :indicator-placement="'inside'"
+              processing
+          />
         </template>
 
       </template>

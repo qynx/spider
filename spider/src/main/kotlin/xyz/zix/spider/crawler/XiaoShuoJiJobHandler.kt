@@ -1,6 +1,5 @@
 package xyz.zix.spider.crawler
 
-import cn.hutool.core.codec.Base62
 import cn.hutool.core.codec.Base64
 import cn.hutool.log.Log
 import cn.hutool.log.LogFactory
@@ -27,7 +26,7 @@ class XiaoShuoJiJobHandler : BaseCrawlHandler() {
     override suspend fun start(startUrl: String, scheduleId: Long) {
         val list = findAllChapter(startUrl, scheduleId)
 
-        scheduleSqlService.setTotalCnt(scheduleId, list.size.toLong())
+        scheduleSqlService.initTotalCnt(scheduleId, list.size.toLong())
 
         for (item in list) {
             item.content = parseContent(item.fullUrl, scheduleId)

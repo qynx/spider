@@ -28,10 +28,11 @@ public class ScheduleSqlService extends BaseSqlService<CrawlScheduleMapper, Sche
         baseMapper.addFinish(id, cnt);
     }
 
-    public void setTotalCnt(Long id, Long cnt) {
+    public void initTotalCnt(Long id, Long cnt) {
         ScheduleEn en = new ScheduleEn();
         en.setId(id);
         en.setTotalCount(cnt);
+        en.setFinishCount(0L);
         updateById(en);
     }
 

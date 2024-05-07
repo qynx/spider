@@ -63,6 +63,7 @@ class DownloadCli {
                 req.rspStatusCode = lastReq.rspStatusCode
                 req.rspBody = lastReq.rspBody
                 req.rspHeader = lastReq.rspHeader
+                req.rspByte = lastReq.rspByte
                 return req
             }
         }

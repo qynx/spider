@@ -22,7 +22,7 @@ class TeSeXiaoShuoCrawler : BaseJobHandler() {
 
         val chapterList = findAllChapter(startUrl, scheduleId)
 
-        scheduleSqlService.setTotalCnt(scheduleId, chapterList.size.toLong())
+        scheduleSqlService.initTotalCnt(scheduleId, chapterList.size.toLong())
 
         log.info("find chapter finish total ${chapterList.size}")
         for (chapter in chapterList) {

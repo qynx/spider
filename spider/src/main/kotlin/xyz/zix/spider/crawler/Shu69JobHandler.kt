@@ -26,7 +26,7 @@ class Shu69JobHandler : BaseJobHandler() {
         val bookInfo = parseBookInfo(startUrl, scheduleId)
 
         val allChapter = findAllChapter(startUrl, scheduleId)
-        scheduleSqlService.setTotalCnt(scheduleId, allChapter.size.toLong())
+        scheduleSqlService.initTotalCnt(scheduleId, allChapter.size.toLong())
 
         for (item in allChapter) {
             val content = parseChapter(item.fullUrl, scheduleId)

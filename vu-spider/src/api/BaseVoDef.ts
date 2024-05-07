@@ -38,6 +38,7 @@ export interface ScheduleVO {
     id?: string,
     scheduleTimeStr?: string,
     status?: string
+    processRatio?: string
 }
 
 export interface ScheduleQuery {
