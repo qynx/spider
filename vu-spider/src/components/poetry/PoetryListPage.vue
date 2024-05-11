@@ -105,7 +105,7 @@ init()
 <template>
   <a-layout :style="{paddingLeft: '5px', paddingTop: '20px'}">
     <a-space>
-      <a-input v-model:value="query.title" placeholder="题目"></a-input>
+      <a-input v-model:value="query.titleLike" placeholder="题目"></a-input>
       <a-input v-model:value="query.author" placeholder="作者"></a-input>
       <a-button @click="init()" :loading="loading">查询</a-button>
       <a-button type="primary" @click="e => edit(undefined)">新增</a-button>

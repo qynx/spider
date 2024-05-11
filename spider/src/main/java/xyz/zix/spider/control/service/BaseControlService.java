@@ -7,6 +7,7 @@ import org.springframework.util.Assert;
 import xyz.zix.spider.control.adapter.VoAdapter;
 import xyz.zix.spider.exceptions.RsNotFoundException;
 import xyz.zix.spider.repo.kt.mapper.KtCommonMapper;
+import xyz.zix.spider.repo.mapper.CommonMapper;
 import xyz.zix.spider.repo.service.sql.BaseSqlService;
 import xyz.zix.spider.repo.vo.PageVO;
 
@@ -21,6 +22,8 @@ public abstract class BaseControlService<D, Q, V, S extends BaseSqlService<? ext
     protected S service;
     @Autowired
     protected KtCommonMapper ktCommonMapper;
+    @Autowired
+    protected CommonMapper commonMapper;
 
     public PageVO<V> page(Q q, Long current, Long pageSize, String last) {
         PageVO<D> page = service.page(q, current, pageSize, last);

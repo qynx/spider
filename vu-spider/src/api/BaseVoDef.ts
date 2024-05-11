@@ -56,7 +56,8 @@ export interface GraphBarVO {
 }
 
 export interface GraphQuery {
-
+    dateStart?: string,
+    dateEnd?: string,
 }
 
 export interface GraphItemVO {
@@ -71,8 +72,13 @@ export interface GraphSeriesVO {
     radius?: string
 }
 
-export interface GraphRsp {
+export interface GraphToolTipVo {
+    trigger?: string,
+    formatter?: any,
+}
 
+export interface GraphRsp {
+    tooltip: GraphToolTipVo,
     bar?: GraphBarVO;
     series?: Array<GraphSeriesVO>
 }

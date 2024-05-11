@@ -47,7 +47,7 @@ init()
         <a-textarea
             v-model:value="form.content"
             placeholder="内容"
-            auto-size
+            :auto-size="{ minRows: 8, maxRows: 100 }"
         ></a-textarea>
         <a-button type="primary" @click="add">提交</a-button>
         <a-button type="primary" @click="add2">链接录入</a-button>

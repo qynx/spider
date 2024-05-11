@@ -1,5 +1,6 @@
 package xyz.zix.spider.control.vo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import xyz.zix.spider.control.vo.graph.GraphLegendVO;
 import xyz.zix.spider.control.vo.graph.GraphToolTipVO;
@@ -14,8 +15,10 @@ public class GraphRsp implements Serializable {
 
     private GraphTitleVO title;
 
+    @JsonProperty("xAxis")
     private GraphAxisVo xAxis;
 
+    @JsonProperty("yAxis")
     private GraphAxisVo yAxis;
 
     private GraphToolTipVO tooltip;

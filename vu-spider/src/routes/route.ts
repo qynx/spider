@@ -10,6 +10,7 @@ import BookPage from "../components/book/BookPage.vue";
 import ReqLogGraph from "../components/req_log/ReqLogGraph.vue";
 import MenuPage from '../page/MenuPage.vue';
 import PoetryGraph from "../components/poetry/PoetryGraph.vue";
+import WorkCheckInGraphPg from '../components/work/WorkCheckInGraphPg.vue';
 
 const allChildren = [
     {
@@ -51,6 +52,11 @@ const allChildren = [
         path: 'req_log_graph',
         name: "ReqLogGraphPage",
         component: ReqLogGraph
+    },
+    {
+        path: "work_check_in_graph",
+        name: "workCheckInGraphPage",
+        component: WorkCheckInGraphPg
     }
 ]
 
@@ -63,6 +69,7 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/spider",
         component: MenuPage,
+        redirect: {name: "poetryGraph"},
         children: allChildren,
     }
 ]

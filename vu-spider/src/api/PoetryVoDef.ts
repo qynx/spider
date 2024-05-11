@@ -9,7 +9,7 @@ export interface PoetryVO {
 
 export interface PoetryQuery {
     id?: string,
-    title?: string,
+    titleLike?: string,
     author?: string,
     current: number,
     pageSize: number,

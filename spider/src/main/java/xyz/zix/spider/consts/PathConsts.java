@@ -17,6 +17,8 @@ public class PathConsts {
 
     public static final String CONFIG_PATH = Paths.get(HOME_PATH, ".config").toString();
 
+    public static final String DOCUMENTS_PATH = Paths.get(HOME_PATH, "Documents").toString();
+
     public static final String BLOG_PROJECT_PATH = Paths.get(HOME_PATH, "open_repos", "sblg").toString();
 
     public static final String BLOG_POETRY_SRC_PATH = Paths.get(BLOG_PROJECT_PATH, "src", "posts", "诗词").toString();

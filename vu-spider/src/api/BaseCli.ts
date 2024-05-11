@@ -7,7 +7,7 @@ export const cli = axios.create({
 cli.interceptors.response.use(async (rsp) => {
     const data = rsp.data
     if (!data.success) {
-        window.msg.warning("接口错误🙅: " + data.msg)
+        window.msg.warning("接口错误🙅: " + (data.msg || "未知错误❌"))
         return Promise.reject({
             "error": "自定义",
             data: rsp.data
@@ -22,7 +22,7 @@ cli.interceptors.response.use(async (rsp) => {
         const data = err.response?.data
         console.log(err.response)
         if (err.message.indexOf("Network Error") > -1) {
-            window.msg.error("联系不上后端服务 请检查🛜信息")
+            window.msg.error("服务失联啦🥵， 请检查🛜信息")
         } else {
             let msg = data?.msg;
             if (msg) {

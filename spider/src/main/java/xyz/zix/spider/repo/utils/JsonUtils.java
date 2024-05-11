@@ -37,6 +37,14 @@ public class JsonUtils {
     }
 
     @SneakyThrows
+    public static <T> T fromJson(String json, TypeReference<T> typeReference) {
+        if (null == json || json.isEmpty()) {
+            return null;
+        }
+        return (T) objectMapper.readValue(json, typeReference);
+    }
+
+    @SneakyThrows
     public static <T> T fromJson(String json, Type type) {
         return (T) objectMapper.readValue(json, objectMapper.getTypeFactory().constructType(type));
     }

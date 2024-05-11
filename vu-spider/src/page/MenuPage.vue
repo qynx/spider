@@ -50,6 +50,17 @@ const menuOptions: MenuOption[] = [
         key: "poetryGraph"
       }
     ]
+  },
+  {
+    label: "work",
+    key: "work",
+    icon: renderIcon(BookIcon),
+    children: [
+      {
+        label: "工时",
+        key: "workCheckInGraphPage",
+      }
+    ]
   }
 ]
 

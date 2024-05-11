@@ -2,12 +2,14 @@ package xyz.zix.spider.repo.ds;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import com.baomidou.mybatisplus.core.config.GlobalConfig;
 import com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import lombok.SneakyThrows;
+import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.annotation.Bean;
@@ -65,13 +67,14 @@ public class MySqlDs {
         return mapperScannerConfigurer;
     }
 
-
-
     @SneakyThrows
     private  SqlSessionFactory init(DataSource dataSource) {
         MybatisSqlSessionFactoryBean factoryBean = new MybatisSqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource);
         factoryBean.setDefaultEnumTypeHandler(MybatisEnumTypeHandler.class);
+        MybatisConfiguration configuration = new MybatisConfiguration();
+        configuration.setLogImpl(SqlLog.class);
+        factoryBean.setConfiguration(configuration);
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
         factoryBean.setPlugins(interceptor);
