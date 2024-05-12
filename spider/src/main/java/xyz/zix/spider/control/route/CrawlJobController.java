@@ -21,11 +21,16 @@ import xyz.zix.spider.repo.query.CrawlJobQuery;
 import xyz.zix.spider.repo.query.CrawlScheduleQuery;
 import xyz.zix.spider.repo.service.sql.CrawlJobSqlService;
 import xyz.zix.spider.repo.service.sql.ScheduleSqlService;
+import xyz.zix.spider.repo.vo.LabelVO;
 import xyz.zix.spider.repo.vo.ZixRsp;
 import xyz.zix.spider.utils.ZixCronUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @RestController
@@ -34,6 +39,15 @@ public class CrawlJobController extends BaseControlService<CrawlJobEn, CrawlJobQ
 
     @Resource
     private ScheduleSqlService scheduleSqlService;
+
+    @GetMapping("/job_source/enums")
+    @ResponseBody
+    public Object enums() {
+        List<LabelVO> res = Stream.of(
+                JobSourceEnum.values()
+        ).map(it -> new LabelVO().setLabel(it.name()).setValue(it.name())).collect(Collectors.toList());
+        return ZixRsp.success(res);
+    }
 
 
     protected void prepareSave(CrawlJobVO last, CrawlJobVO curr) {

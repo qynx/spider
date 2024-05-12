@@ -19,4 +19,6 @@ public enum JobSourceEnum {
 
     @EnumValue
     private final Integer code;
+
+
 }

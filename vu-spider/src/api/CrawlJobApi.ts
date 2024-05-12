@@ -1,5 +1,13 @@
 import {cli} from "./BaseCli";
-import {CrawlJobQuery, CrawlJobSummaryVo, CrawlJobVO, PageVO, ScheduleQuery, ScheduleVO} from "./BaseVoDef";
+import {
+    CrawlJobQuery,
+    CrawlJobSummaryVo,
+    CrawlJobVO,
+    LabelValueVO,
+    PageVO,
+    ScheduleQuery,
+    ScheduleVO
+} from "./BaseVoDef";
 
 
 export const pageCrawlJobApi = async function (b: CrawlJobQuery): Promise<PageVO<CrawlJobVO>> {
@@ -45,4 +53,9 @@ export const summaryCrawlJobApi = async function (id: string): Promise<CrawlJobS
 export const pageScheduleApi = async function (query: ScheduleQuery): Promise<PageVO<ScheduleVO>> {
     const url = "/api/zix/schedule/page"
     return (await cli.post(url, query)).data.data
+}
+
+export const jobSourceEnumsApi = async function (): Promise<Array<LabelValueVO>> {
+    const url = "/api/zix/crawl_job/job_source/enums"
+    return (await cli.get(url)).data.data
 }

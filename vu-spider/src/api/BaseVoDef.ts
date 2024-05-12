@@ -5,6 +5,12 @@ export interface PageVO<T> {
     records: T[],
 }
 
+export interface LabelValueVO {
+    label?: string,
+    value?: string,
+
+}
+
 
 export interface CrawlJobVO {
 

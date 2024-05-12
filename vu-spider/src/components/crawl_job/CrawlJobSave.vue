@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import {saveCrawlJobApi} from "../../api/CrawlJobApi";
 import {ref} from "vue";
-import {CrawlJobVO} from "../../api/BaseVoDef";
+import {CrawlJobVO, LabelValueVO} from "../../api/BaseVoDef";
 import {useMessage} from "naive-ui";
 import {useRouter} from "vue-router";
-import {getCrawlJobApi} from "../../api/CrawlJobApi";
+import {getCrawlJobApi, jobSourceEnumsApi} from "../../api/CrawlJobApi";
+import ApiSelect from "../base/select/ApiSelect.vue";
 
 const router = useRouter()
 
@@ -24,6 +25,10 @@ const init = async function () {
   }
 }
 
+const onSelChange = async function (option:LabelValueVO) {
+  form.value.sourceEnum = option.value
+}
+
 init()
 
 </script>
@@ -33,6 +38,7 @@ init()
   <a-space direction="vertical">
     <a-input v-model:value="form.name" placeholder="name"></a-input>
     <a-input v-model:value="form.cron" placeholder="cron"></a-input>
+    <ApiSelect :load="jobSourceEnumsApi" v-on:change="onSelChange"></ApiSelect>
     <a-input v-model:value="form.sourceEnum"  placeholder="source"></a-input>
     <a-input v-model:value="form.startUrl" placeholder="startUrl"></a-input>
     <a-button @click="sbt">提交</a-button>
